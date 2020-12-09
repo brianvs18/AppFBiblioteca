@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "164070056009",
+    "project_id": "fappbiblioteca",
+    "storage_bucket": "fappbiblioteca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164070056009:android:6da8eaa24cfa149fcb1f98",
+        "android_client_info": {
+          "package_name": "com.example.appfbiblioteca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164070056009-ggj39qgqi4a7rau6u84k593g7032b0uj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIRiQnwX4awfNI6RenBbWP5hZlaz88yzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164070056009-ggj39qgqi4a7rau6u84k593g7032b0uj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
