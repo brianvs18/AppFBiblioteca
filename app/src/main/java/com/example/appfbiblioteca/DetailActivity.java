@@ -49,7 +49,7 @@ public class DetailActivity extends BaseActivity {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("model", model);
                 }else{
-                    makeSimpleAlertDialog("Error", "Modelo vacío - hola");
+                    makeSimpleAlertDialog("Error", "Modelo vacío");
                 }
                 goToEdit(model);
             }
@@ -58,6 +58,14 @@ public class DetailActivity extends BaseActivity {
         fab_detail_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Snackbar snackbar = Snackbar.make(view, "Seguro que deseas eliminarlo?", Snackbar.LENGTH_LONG);
+                snackbar.setAction("Estoy seguro!", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                snackbar.show();
             }
         });
     }

@@ -60,6 +60,7 @@ public class CreateActivity extends BaseActivity {
                     model.setEditorial(editorial);
 
                     save(model);
+
                 }
             }
         });
