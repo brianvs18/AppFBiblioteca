@@ -4,9 +4,12 @@ import android.os.Bundle;
 
 import com.example.appfbiblioteca.models.LibrosModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
@@ -56,7 +59,7 @@ public class EditActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 String id, nombre, autor, editorial;
-
+                
                 nombre = et_edit_nombre.getText().toString();
                 autor = et_edit_autor.getText().toString();
                 editorial = et_edit_editorial.getText().toString();
@@ -64,7 +67,6 @@ public class EditActivity extends BaseActivity {
                 if(nombre.isEmpty() || autor.isEmpty() || editorial.isEmpty()){
                     makeSimpleAlertDialog("informacion", "Por favor llene todos los campos");
                 }else{
-                    model = new LibrosModel();
                     model.setNombre(nombre);
                     model.setAutor(autor);
                     model.setEditorial(editorial);
@@ -77,25 +79,18 @@ public class EditActivity extends BaseActivity {
 
     private void updateL(LibrosModel model) {
         if(collectionReference != null){
-            collectionReference.document().update()
-                    .addOnCompleteListener(new  OnCompleteListener<DocumentReference>() {
+            collectionReference.document(id).set(model)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            if(task.isSuccessful()){
-                                if(task.getResult()!= null){
-                                    makeSimpleAlertDialog("Exitoso","El libro fue actualizado correctamente");
-                                    clear();
-                                }else{
-                                    makeSimpleAlertDialog("Advertencia","El libro no fue actualizado correctamente");
-                                }
-                            }else{
-                                makeSimpleAlertDialog("Error", task.getException().getMessage());
-                            }
+                        public void onSuccess(Void aVoid) {
+                            makeSimpleAlertDialog("Exitoso","El libro fue actualizado correctamente");
                         }
                     });
+
         }else{
             makeSimpleAlertDialog("Error","No hay conexión con la base de datos");
         }
+
     }
 
     protected void init(){
